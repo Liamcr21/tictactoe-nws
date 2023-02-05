@@ -36,4 +36,8 @@ const startGame = () => {
             table.appendChild(row);
             }
             };
-  
+            
+            const getAISymbol = () => {
+            return playerSymbol === 'X' ? 'O' : 'X';
+            };
+ 
