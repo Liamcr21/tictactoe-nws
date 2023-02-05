@@ -36,3 +36,25 @@ function StartTtt() {
   }
 };
 
+
+// fonction appelé lors de chaque tour 
+function onTurnClick(e) {
+    // on récupère l'id de la case 
+  const { id: squareId } = e.target;
+  // on vérifie si la case choisi n'est pas déja joué
+  if (typeof TableDeJeu[squareId] === 'number') {
+    // Tour du joueur humain
+    onTurn(squareId, humain);
+    // on vérifie si il n'y a pas match nul
+    if (!onCheckGameTie()) {
+        // et a l'ia de jouer
+      onTurn(botPicksSpot(), ai)
+    }
+  } else {
+    // affichage d'un message d'alerte si la case est joué
+    const message = 'Case déja prise';
+    alert(message);
+  }
+}
+
+
