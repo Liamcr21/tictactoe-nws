@@ -10,19 +10,19 @@
     <h1>Tic Tac Toe Simple</h1>
     <form>
       Taille de la grille :
-      <input type="radio" > 3x3
-      <input type="radio" > 6x6
+      <input type="radio" name="gridSize" value="3" checked> 3x3
+      <input type="radio" name="gridSize" value="6"> 6x6
       <br><br>
       Choisir votre symbole :
-      <input type="radio" > X
-      <input type="radio" > O
+      <input type="radio" name="symbol" value="X" checked> X
+      <input type="radio" name="symbol" value="O"> O
       <br><br>
-      <button type="button" >Commencer</button>
+      <button type="button" onclick="startGame()">Commencer</button>
     </form>
     <br>
-    <table ></table>
+    <table id="gameBoard"></table>
     <br>
-    <button type="button" >Rejouer</button>
+    <button type="button" id="replayBtn" onclick="replay()" style="display: none;">Rejouer</button>
     <br><br>
     <div id="result"></div>
 </body>
