@@ -95,4 +95,9 @@ const startGame = () => {
             document.querySelector('#replayBtn').style.display = 'inline-block';
             };
             
-         
+            const replay = () => {
+            document.querySelector('#result').textContent = '';
+            document.querySelector('#replayBtn').style.display = 'none';
+            startGame();
+            };
+        
