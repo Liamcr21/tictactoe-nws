@@ -58,3 +58,15 @@ function onTurnClick(e) {
 }
 
 
+// fonction appelé pour jouer un tour
+function onTurn(squareId, player) {
+    // on met a jour la grille  avec le symbole
+  TableDeJeu[squareId] = player;
+  document.getElementById(squareId).innerText = player;
+  // on vérifie si le tour est gagnant 
+  let isGameWon = onCheckWin(TableDeJeu, player);
+  if (isGameWon) {
+    // termine la partie si une combinaison gagnante a été trouvé
+    onGameOver(isGameWon);
+  }
+}
