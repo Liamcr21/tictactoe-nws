@@ -90,4 +90,9 @@ const startGame = () => {
             }
             };
             
+            const showResult = (message) => {
+            document.querySelector('#result').textContent = message;
+            document.querySelector('#replayBtn').style.display = 'inline-block';
+            };
             
+         
