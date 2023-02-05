@@ -122,3 +122,22 @@ function onDeclareWinner(who) {
 }
 
 
+
+ 
+// fonction pour vérifier si y a match nul
+function onCheckGameTie() {
+    // si toutes les carrés sont remlpi
+  if (emptySquares().length === 0) {
+    // boucle pour changer la couleur de tout les carrés en bleu
+    for (let i = 0; i < carres.length; i++) {
+      carres[i].style.backgroundColor = 'blue';
+      // on enlève le click
+      carres[i].removeEventListener('click', onTurnClick, false)
+    }
+    // on affiche un message match nul
+    onDeclareWinner('Match nul');
+    return true;
+  } else {
+    return false;
+  }
+}
