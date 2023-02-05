@@ -70,3 +70,26 @@ function onTurn(squareId, player) {
     onGameOver(isGameWon);
   }
 }
+
+// fonction pour vérifier si une combinaison gagnante a  été trouvé
+function onCheckWin(board, player) {
+     // Réduire la grille de jeu en une liste de tours joués par le joueur actuel
+  let plays = board.reduce((a, e, i) => {
+    return (e === player) ? a.concat(i) : a;
+  }, []);
+  // Initialiser la variable pour indiquer si la partie a été gagnée
+  let gameWon = false;
+    // Vérifier si toutes les cases d'une combinaison gagnante ont été jouées par le joueur 
+  for (let [index, win] of winCombo.entries()) {
+    if (win.every(elem => plays.indexOf(elem) > -1)) {
+         // Mettre à jour la variable pour indiquer que la partie a été gagnée
+      gameWon = {
+        index: index,
+        player: player
+      };
+      break;
+    }
+  }
+  return gameWon;
+}
+
