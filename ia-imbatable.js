@@ -93,3 +93,26 @@ function onCheckWin(board, player) {
   return gameWon;
 }
 
+
+// fonction pour terminer le jeu
+function onGameOver({ index, player }) {
+    // pour chaque index de la combinaison gagnante determiné
+  for (let i of winCombo[index]) {
+    // déterminer la couleur en fonction du joueur qui a gagné, soit vert pour l'humain, soit rouge pour l'IA
+    const color = (player === humain) ? 'green' : 'red';
+    // définir la couleur de fond pour chacun des carrés de la combinaison gagnante
+    document.getElementById(i).style.backgroundColor = color;
+  }
+  // désactiver les clics sur les carrés
+  for (let i = 0; i < carres.length; i++) {
+    carres[i].removeEventListener('click', onTurnClick, false)
+  }
+ // déterminer le résultat du jeu en fonction de qui a gagné
+  const result = (player === humain) ? 'Victoire de l\'humain' : 'Victoire de l\'ia';
+  // appel la fonction pour déclarer le gagnant
+  onDeclareWinner(result);
+}
+
+
+
+
