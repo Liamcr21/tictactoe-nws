@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>Tic Tac Toe Simple</h1>
+    <div class="centrer">
     <form>
       Taille de la grille :
       <input type="radio" name="gridSize" value="3" checked> 3x3
@@ -21,11 +22,16 @@
       <br><br>
       <button type="button" onclick="startGame()">Commencer</button>
     </form>
-    <br>
-    <table id="gameBoard"></table>
-    <br>
-    <button type="button" id="replayBtn" onclick="replay()" style="display: none;">Rejouer</button>
-    <br><br>
+  </div>
+  <div class="centrer">
     <div id="result"></div>
+  </div>
+  <div class="centrer">
+    <table id="gameBoard"></table>
+  </div>
+  <div class="centrer">
+    <button type="button" id="replayBtn" onclick="replay()" style="display: none;">Rejouer</button>
+  </div>
+
 </body>
 </html>
