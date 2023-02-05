@@ -40,4 +40,54 @@ const startGame = () => {
             const getAISymbol = () => {
             return playerSymbol === 'X' ? 'O' : 'X';
             };
- 
+            
+            const checkForWinningConditions = () => {
+            let symbol = currentTurn;
+            for (let i = 0; i < gridSize; i++) {
+            let rowWin = true;
+            let colWin = true;
+            for (let j = 0; j < gridSize; j++) {
+            if (gameBoard[i][j] !== symbol) {
+            rowWin = false;
+            }
+            if (gameBoard[j][i] !== symbol) {
+            colWin = false;
+            }
+            }
+            if (rowWin || colWin) {
+            winner = symbol;
+            showResult(symbol + ' a gagné!');
+            return;
+            }
+            }
+            
+            let diagWin1 = true;
+            let diagWin2 = true;
+            for (let i = 0; i < gridSize; i++) {
+            if (gameBoard[i][i] !== symbol) {
+            diagWin1 = false;
+            }
+            if (gameBoard[i][gridSize - i - 1] !== symbol) {
+            diagWin2 = false;
+            }
+            }
+            if (diagWin1 || diagWin2) {
+            winner = symbol;
+            showResult(symbol + ' a gagné!');
+            return;
+            }
+            
+            let draw = true;
+            for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+            if (gameBoard[i][j] === null) {
+            draw = false;
+            }
+            }
+            }
+            if (draw) {
+            showResult('Match nul!');
+            }
+            };
+            
+            
