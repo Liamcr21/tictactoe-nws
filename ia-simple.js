@@ -100,4 +100,15 @@ const startGame = () => {
             document.querySelector('#replayBtn').style.display = 'none';
             startGame();
             };
-        
+            
+            const getAIMove = () => {
+            for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+            if (gameBoard[i][j] === null) {
+            return { i, j };
+            }
+            }
+            }
+            };
+            
+            
