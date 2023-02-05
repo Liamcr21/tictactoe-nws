@@ -1,3 +1,4 @@
+# tictactoe
 Vous êtes une agence web fraîchement ouverte, votre premier client est la Ligue internationale de Tic Tac Toe (Morpion en français) qui souhaite lancer une activité E-Sportive sur ce jeu.
 
 La ligue vous demande de produire un prototype fonctionnel d’IA de Morpion que vous pourrez lui présenter afin de partir sur un vrai projet.
