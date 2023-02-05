@@ -19,3 +19,20 @@ const winCombo = [
 ];
 
 
+// on récupère les carrés
+const carres = document.getElementsByClassName('carre');
+// On démare le TTT
+StartTtt();
+// Fonction de démarrage du TTT
+function StartTtt() {
+    // On cache l'endoit du message de victoire ou défaite
+  document.querySelector('.resultat-ttt').style.display = 'none';
+  // on met en place le jeu
+  TableDeJeu = Array.from(Array(9).keys());
+  for (let i = 0; i < carres.length; i++) {
+    carres[i].innerText = '';
+    carres[i].style.removeProperty('background-color');
+    carres[i].addEventListener('click', onTurnClick, false)
+  }
+};
+
