@@ -113,6 +113,12 @@ function onGameOver({ index, player }) {
   onDeclareWinner(result);
 }
 
-
+// fonction pour déclarer le gagnant
+function onDeclareWinner(who) {
+    // afficher le bloc du résultat
+  document.querySelector('.resultat-ttt').style.display = 'block';
+  // définir le résultat du jeu à afficher
+  document.querySelector('.resultat-ttt .text-ttt').innerText = ` ${who}`;
+}
 
 
