@@ -141,3 +141,108 @@ function onCheckGameTie() {
     return false;
   }
 }
+
+//IA
+
+// Cette fonction retourne un tableau avec les cases vides
+function emptySquares() {
+     // Utilise la fonction filter pour retourner un tableau avec les cases qui sont du type "number"
+  return TableDeJeu.filter(item => typeof item === 'number');
+}
+
+// Cette fonction permet à l'IA de choisir un emplacement
+function botPicksSpot() {
+    // Utilise la fonction minimax pour déterminer le meilleur choix de l'IA et retourne l'index
+  return minimax(TableDeJeu, ai).index;
+}
+
+// Cette fonction implémente l'algorithme minimax pour déterminer le meilleur coup à jouer
+function minimax(newBoard, player) {
+  // Obtient un tableau avec les emplacements disponibles
+  let availableSpots = emptySquares();
+
+  // Si le joueur humain gagne
+  if (onCheckWin(newBoard, humain)) {
+    // Retourne un score de -10 pour dire que l'IA a perdu
+    return { score: -10 }
+  } 
+  // Si l'IA gagne
+  else if (onCheckWin(newBoard, ai)) {
+    // Retourne un score de 10 pour dire que l'IA a gagné
+    return { score: 10 }
+  } 
+  // Si tous les emplacements sont remplis et qu'il n'y a pas de gagnant
+  else if (availableSpots.length === 0) {
+    // Retourne un score de 0 pour dire que c'est un match nul
+    return { score: 0 }
+  }
+
+  // Tableau pour enregistrer tous les coups
+  let moves = [];
+
+  // Boucle à travers tous les emplacements disponibles
+  for (let i=0; i<availableSpots.length; i++) {
+    let move = {};
+    // Enregistre l'index de l'emplacement
+    move.index = newBoard[availableSpots[i]];
+    // Place le joueur sur cet emplacement
+    newBoard[availableSpots[i]] = player;
+
+    // Si c'est à l'IA de jouer
+    if (player === ai) {
+      // Calcule le score pour ce coup en appelant récursivement minimax pour l'autre joueur
+      let result = minimax(newBoard, humain);
+      // Enregistre le score pour ce coup
+      move.score = result.score;
+    } 
+    // Si c'est à l'autre joueur de jouer
+    else {
+      // Calcule le score pour ce coup en appelant récursivement minimax pour l'IA
+      let result = minimax(newBoard, ai);
+      // Enregistre le score pour ce coup
+      move.score = result.score;
+    } 
+
+    // Réinitialise l'emplacement pour permettre d'autres calculs
+    newBoard[availableSpots[i]] = move.index;
+    // Ajoute ce coup au tableau de coups
+    moves.push(move);
+  } 
+
+  let bestMove;
+
+// Vérifier si le joueur est l'IA
+if (player === ai) {
+  // Initialiser le meilleur score à une valeur faible
+  let bestScore = -10000;
+
+  // Boucler à travers tous les coups possibles
+  for (let i=0; i<moves.length; i++) {
+    // Si le coup actuel a un score plus élevé que le meilleur score
+    if (moves[i].score > bestScore) {
+      // Mettre à jour le meilleur score
+      bestScore = moves[i].score;
+      // Mettre à jour le meilleur coup
+      bestMove = i;
+    }
+  } 
+} 
+else {
+  // Initialiser le meilleur score à une valeur élevée
+  let bestScore = 10000;
+
+  // Boucler à travers tous les coups possibles
+  for (let i=0; i<moves.length; i++) {
+    // Si le coup actuel a un score plus bas que le meilleur score
+    if (moves[i].score < bestScore) {
+      // Mettre à jour le meilleur score
+      bestScore = moves[i].score;
+      // Mettre à jour le meilleur coup
+      bestMove = i;
+    }
+  }
+}
+
+// Retourner le meilleur coup
+return moves[bestMove];
+ }
